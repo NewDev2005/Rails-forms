@@ -1,4 +1,13 @@
 <%= form_with model: @user, url: user_path(@user.id), data: {turbo: true} do |form| %>
+    <% if @user.errors.any? %>
+        <h2><%= pluralize(@user.errors.count, "error") %> found:</h2>
+
+        <ul>
+            <% @user.errors.each do |error| %>
+                <li><%= error.full_message %></li>
+            <% end %>
+        </ul>
+    <% end %>
     <div>
          <%= form.label :username %>
          <%= form.text_field :username, placeholder: "enter username", value: "yourUsername"  %>
