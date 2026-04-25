@@ -1,0 +1,28 @@
+<%# <form action="/users" method="post" data-turbo="false">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>   
+    <%# <label for="username">Username:</label>
+    <input type="text" id="username" name="user[username]"><br><br>
+    <label for="email">email:</label>
+    <input type="email" id="email" name="user[email]"><br><br>
+    <label for="password">password:</label>
+    <input type="password" id="password" name="user[password"><br><br>
+    <input type="submit" value="submit">
+</form>  %>
+
+<%= form_with model: @user, data: {turbo: true} do |form| %>
+    <div>
+         <%= form.label :username %>
+         <%= form.text_field :username, placeholder: "enter username", value: "yourUsername"  %>
+    </div>
+
+    <div>
+        <%= form.label :email %>
+        <%= form.email_field :email, placeholder: "example@gmail.com"%>
+    </div>
+
+    <div>
+        <%= form.label :password%>
+        <%= form.password_field :password%>
+    </div>
+    <%= form.submit value: "submit"%>
+<% end %>
