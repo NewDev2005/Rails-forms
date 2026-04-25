@@ -22,8 +22,11 @@ class UsersController < ApplicationController
   def update
    id = params[:id]
    @user = User.find(id)
-   @user.update(username: params[:user][:username], email: params[:user][:email], password: params[:user][:password])
-  #  redirect_to "http://www.rubyonrails.org", allow_other_host: true
+   if @user.update(user_params)
+     redirect_to(new_user_path)
+   else
+    render "edit", status: :unprocessable_entity
+   end
   end
 
   private
