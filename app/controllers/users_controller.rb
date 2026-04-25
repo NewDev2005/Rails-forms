@@ -15,8 +15,15 @@ class UsersController < ApplicationController
   end
 
   def edit
-    id = params.extract_value(:id)
+    id = params[:id]
     @user = User.find(id)
+  end
+
+  def update
+   id = params[:id]
+   @user = User.find(id)
+   @user.update(username: params[:user][:username], email: params[:user][:email], password: params[:user][:password])
+  #  redirect_to "http://www.rubyonrails.org", allow_other_host: true
   end
 
   private
